@@ -13,6 +13,9 @@
 ## Preflight（开始前需要你提供/确认）
 
 ### Inputs（必须）
+- 网站流量统计代码（如 GA4 Measurement ID 或 Plausible 脚本代码）
+- 站点社交分享图（OG Image，1200x630，JPEG/PNG）：`og-image.jpg`
+- 自定义域名（强烈建议作为必须项：如 `aphantasia.yourdomain.com`，提升信任度）
 - Substack publication URL（例如：`https://yourname.substack.com/`）
 - 中文公众号名称 + 关键词（例如：关键词：`资源包`）
 - 公众号二维码图片（PNG，建议 800px+）：`wechat-oa-qr.png`
@@ -41,7 +44,8 @@ touch site/index.html site/en/index.html site/assets/styles.css
 ```
 Expected: 文件存在，无报错。
 
-**Step 2: 写最小可用 HTML（中文入口）**
+**Step 2: 写核心 HTML 与 SEO 骨架（中文入口）**
+- `<head>`：添加 Title, Meta description, Open Graph 标签，以及指向 `/en/` 的 `hreflang` 标签
 
 Write `site/index.html`（核心模块）：
 - 顶部：站点名 + 一句话定位（中文）
@@ -51,7 +55,8 @@ Write `site/index.html`（核心模块）：
 - 次 CTA：进入英文入口（链接到 `/en/`）
 - 页脚：免责声明（非医疗建议）+ 隐私说明（静态页不收集个人数据）
 
-**Step 3: 写最小可用 HTML（英文入口）**
+**Step 3: 写核心 HTML 与 SEO 骨架（英文入口）**
+- `<head>`：对应英文 SEO 标签与 `hreflang` 标签
 
 Write `site/en/index.html`：
 - 英文版定位与 30 秒自测
@@ -84,7 +89,8 @@ git commit -m "feat: add GitHub Pages bilingual navigation MVP"
 
 ---
 
-## Task 2: 增加可选的轻量埋点（UTM 透传）
+## Task 2: 增加统计埋点与数据透传（Must）
+- 在 JS 中增加事件上报：自测完成事件（`Test_Completed`）、移动端复制微信按钮点击（`Wechat_Copy_Clicked`）、跳转点击（`Outbound_Click`）。
 
 **Files:**
 - Modify: `site/en/index.html`
